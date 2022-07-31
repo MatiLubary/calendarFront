@@ -70,6 +70,7 @@ export const CalendarModal = () => {
             onChange={(event) => onDateChanged(event, 'start')}
             className="form-control"
             dateFormat='Pp'
+            showTimeSelect
           />
       </div>
       <div className="form-group mb-2">
@@ -80,6 +81,7 @@ export const CalendarModal = () => {
             onChange={(event) => onDateChanged(event, 'end')}
             className="form-control"
             dateFormat='Pp'
+            showTimeSelect
           />
       </div>
       <hr />
