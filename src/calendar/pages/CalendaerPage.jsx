@@ -57,7 +57,6 @@ export const CalendaerPage = () => {
   const onViewChanged = (event) => {
     localStorage.setItem('lastView', event);
     setLastView(event)
-    console.log('asdafwd')
   }
 
 
