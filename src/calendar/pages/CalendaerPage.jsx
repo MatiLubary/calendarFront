@@ -7,28 +7,15 @@ import { localizer } from '../../helpers'
 import { CalendarEvent } from '../components/CalendarEvent';
 import { useState } from 'react';
 import { CalendarModal } from '../components/CalendarModal';
-import { useUiStore } from '../../hooks/useUiStore';
+import { useUiStore, useCalendarStore } from '../../hooks';
 
-
-
-
-
-const events = [{
-  title: 'random',
-  notes: 'test note 123 fake',
-  start: new Date(),
-  end: addHours(new Date(), 2),
-  bgColor: '#fafafa',
-  user: {
-    _id: '123',
-    name: 'Mati'
-  }
-}]
+const events = []
 
 
 export const CalendaerPage = () => {
 
   const {openDateModal} = useUiStore();
+  const {events, setActiveEvent} = useCalendarStore();
 
   const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'week')
 
@@ -51,7 +38,7 @@ export const CalendaerPage = () => {
   }
 
   const onSelect = (event) => {
-    console.log({click: event});
+    setActiveEvent(event);
   }
 
   const onViewChanged = (event) => {

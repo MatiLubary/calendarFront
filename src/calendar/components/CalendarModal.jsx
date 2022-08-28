@@ -8,6 +8,8 @@ import { differenceInSeconds } from 'date-fns';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css'
 import { useUiStore } from '../../hooks/useUiStore';
+import { useEffect } from 'react';
+import { useCalendarStore } from '../../hooks';
 
 
 
@@ -28,7 +30,7 @@ export const CalendarModal = () => {
 
 
     const {isDateModalOpen, closeDateModal} = useUiStore();
-
+    const {activeEvent} = useCalendarStore();
 
     const [isOpen, setIsModalOpen] = useState(true)
     const [formSubmitted, setFormSubmitted ] = useState(false);
@@ -39,7 +41,7 @@ export const CalendarModal = () => {
       notes: 'asdfa',
       start: new Date(),
       end: addHours (new Date(), 2)
-    })
+    });
 
     const titleClass = useMemo(() => {
       if (!formSubmitted) return '';
@@ -47,6 +49,15 @@ export const CalendarModal = () => {
       return (formValues.title.length > 0) ? 'is-valid' : 'is-invalid'
 
     }, [formValues.title, formSubmitted])
+
+    useEffect(() => {
+      if (activeEvent !== null) {
+        setFormValues({...activeEvent})
+      }
+    
+
+    }, [activeEvent])
+    
 
     const onInputChanged = ({target}) => {
       setFormValues({
