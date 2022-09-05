@@ -1,13 +1,14 @@
 import React from 'react'
 import { Navbar } from '../components/Navbar'
 import { Calendar } from 'react-big-calendar'
-import { addHours } from 'date-fns/esm'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { localizer } from '../../helpers'
 import { CalendarEvent } from '../components/CalendarEvent';
 import { useState } from 'react';
 import { CalendarModal } from '../components/CalendarModal';
 import { useUiStore, useCalendarStore } from '../../hooks';
+import { FabAddNew } from '../components/FabAddNew';
+import { FabDelete } from '../components/FabDelete';
 
 const events = []
 
@@ -72,6 +73,8 @@ export const CalendaerPage = () => {
     />
 
     <CalendarModal />
+    <FabAddNew />
+    <FabDelete />
 
     </>
   )
